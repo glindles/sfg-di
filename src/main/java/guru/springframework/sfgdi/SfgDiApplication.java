@@ -1,12 +1,12 @@
 package guru.springframework.sfgdi;
 
 import guru.springframework.sfgdi.controllers.*;
+import guru.springframework.sfgdi.datasource.FakeDataSource;
 import guru.springframework.sfgdi.services.PrototypeBean;
 import guru.springframework.sfgdi.services.SingletonBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 //@ComponentScan(basePackages = {"guru.springframework.sfgdi", "com.springframework.pets"}) //now treating pets as third party. they are now factory beans inside sfgdi
 @SpringBootApplication
@@ -53,6 +53,9 @@ public class SfgDiApplication {
 
 		//prototype bean gets created every time its called
 		//singleton gets called once at start
+
+		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+		System.out.println("username: " + fakeDataSource.getUsername());
 
 	}
 
